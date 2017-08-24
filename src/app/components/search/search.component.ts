@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TermsService } from '../../services/terms.service';
-
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -10,18 +8,27 @@ import { TermsService } from '../../services/terms.service';
 })
 
 export class SearchComponent implements OnInit {
+  searchTerms: string[];
+  searchString: string;
 
   constructor(
-    private router: Router,
-    private termsService: TermsService
+    private router: Router
   ) { }
 
   ngOnInit() { }
 
   searchFor(searchText): Boolean {
     // Split by white space and commas.
-    this.termsService.setTerms(String(searchText).split(/[ ,]+/));
-    this.router.navigateByUrl('/list');
+    this.searchTerms = String(searchText).split(/[ ,]+/);
+    for (let i = 0; i < this.searchTerms.length; i++) {
+      this.searchTerms[i] = this.searchTerms[i].toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+    }
+    this.buildSearchString();
+    this.router.navigateByUrl('/list/' + this.searchString);
     return false;
+  }
+
+  buildSearchString() {
+    this.searchString = this.searchTerms.join('+');
   }
 }

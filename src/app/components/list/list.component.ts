@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { TermsService } from '../../services/terms.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-list',
@@ -14,22 +14,24 @@ export class ListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private termsService: TermsService
+    private route: ActivatedRoute,
+    private location: Location
   ) { }
 
-  async ngOnInit() {
-    try {
-      this.searchTerms = await this.termsService.getTerms();
-      for (let i = 0; i < this.searchTerms.length; i++) {
-        this.searchTerms[i] = this.searchTerms[i].toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
-      }
-    } catch (error) {
-      console.log('Error: ', error.message);
-    }
+  ngOnInit() {
+      this.route.paramMap
+      .subscribe((params: ParamMap) => {
+        this.buildSearchTerms(params.get('searchString'));
+        });
   }
 
   searchAgain(): void {
     this.router.navigateByUrl('search');
+  }
+
+  buildSearchTerms(searchString: string): void {
+    this.searchTerms =  searchString.split('+');
+    console.log(this.searchTerms);
   }
 
 }

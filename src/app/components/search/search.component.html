@@ -2,6 +2,8 @@
   <h1>Prometheus</h1>
   <h2>Search. Refine. Discover.</h2>
   <form (submit)="searchFor(searchText.value)">
-    <input type="text" placeholder="Enter search terms" #searchText autofocus>
+    <md-input-container>
+      <input mdInput type="text" placeholder="Enter search terms" #searchText autofocus>
+    </md-input-container>
   </form>
 </div>
