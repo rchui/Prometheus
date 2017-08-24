@@ -21,9 +21,8 @@ export class ListComponent implements OnInit {
     try {
       this.searchTerms = await this.termsService.getTerms();
       for (let i = 0; i < this.searchTerms.length; i++) {
-        this.searchTerms[i] = this.searchTerms[i].toLowerCase();
+        this.searchTerms[i] = this.searchTerms[i].toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
       }
-      console.log(this.searchTerms);
     } catch (error) {
       console.log('Error: ', error.message);
     }
