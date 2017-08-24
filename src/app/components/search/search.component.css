@@ -1,0 +1,13 @@
+.search {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.search md-input-container {
+    width: 400px;
+}
+
+.search input {
+    width: 100%;
+}
