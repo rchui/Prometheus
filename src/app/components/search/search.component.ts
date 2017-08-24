@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() { }
 
   searchFor(searchText): Boolean {
+    // Split by white space and commas.
     this.termsService.setTerms(String(searchText).split(/[ ,]+/));
     this.router.navigateByUrl('/list');
     return false;
