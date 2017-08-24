@@ -1,3 +1,12 @@
 <div>
   <button (click)="searchAgain()">Search Again</button>
+  <h1>Searching articles for terms:</h1>
+  <table>
+    <colgroup>
+      <col *ngFor="let colTerm of searchTerms">
+    </colgroup>
+    <tr>
+      <th *ngFor="let rowTerm of searchTerms">{{rowTerm}}</th>
+    </tr>
+  </table>
 </div>

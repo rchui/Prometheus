@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
 import { ListComponent } from './components/list/list.component';
 
+import { TermsService } from './services/terms.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,7 @@ import { ListComponent } from './components/list/list.component';
     ])
   ],
   providers: [
-
+    TermsService
   ],
   bootstrap: [
     AppComponent

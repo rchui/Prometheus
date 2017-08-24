@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
+
+import { TermsService } from '../../services/terms.service';
 
 @Component({
   selector: 'app-search',
@@ -9,16 +10,16 @@ import { Router } from '@angular/router';
 })
 
 export class SearchComponent implements OnInit {
-  searchText: string;
 
-  constructor(private router: Router) {
-  }
+  constructor(
+    private router: Router,
+    private termsService: TermsService
+  ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   searchFor(searchText): Boolean {
-    console.log(searchText);
+    this.termsService.setTerms(String(searchText).split(/[ ,]+/));
     this.router.navigateByUrl('/list');
     return false;
   }
