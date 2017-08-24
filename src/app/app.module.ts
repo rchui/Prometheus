@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
@@ -16,6 +17,7 @@ import { TermsService } from './services/terms.service';
   ],
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     RouterModule.forRoot([
       {
         path: '',
