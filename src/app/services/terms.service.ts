@@ -6,8 +6,12 @@ export class TermsService {
 
   constructor() { }
 
-  getTerms(): string[] {
-    return this.searchTerms;
+  async getTerms(): Promise<string[]> {
+    try {
+      return await this.searchTerms;
+    } catch (error) {
+      console.log('Error: ', error.message);
+    }
   }
 
   setTerms(searchTerms: string[]): void {

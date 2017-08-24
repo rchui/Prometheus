@@ -17,12 +17,16 @@ export class ListComponent implements OnInit {
     private termsService: TermsService
   ) { }
 
-  ngOnInit() {
-    this.searchTerms = this.termsService.getTerms();
-    for (let i = 0; i < this.searchTerms.length; i++) {
-      this.searchTerms[i] = this.searchTerms[i].toLowerCase();
+  async ngOnInit() {
+    try {
+      this.searchTerms = await this.termsService.getTerms();
+      for (let i = 0; i < this.searchTerms.length; i++) {
+        this.searchTerms[i] = this.searchTerms[i].toLowerCase();
+      }
+      console.log(this.searchTerms);
+    } catch (error) {
+      console.log('Error: ', error.message);
     }
-    console.log(this.searchTerms);
   }
 
   searchAgain(): void {
